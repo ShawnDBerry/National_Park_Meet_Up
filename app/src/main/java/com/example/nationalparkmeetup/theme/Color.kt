@@ -1,4 +1,4 @@
-package com.example.jpmorganweatherapp.ui.theme
+package com.example.nationalparkmeetup.theme
 
 import androidx.compose.ui.graphics.Color
 
