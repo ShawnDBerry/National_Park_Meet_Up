@@ -26,7 +26,9 @@ fun LocationMapView() {
             state = MarkerState(position = singapore),
             title = "Singapore",
             snippet = "Marker in Singapore"
-        )
+        ){
+
+        }
     }
     }
 

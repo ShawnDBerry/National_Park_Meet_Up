@@ -3,7 +3,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("dagger.hilt.android.plugin")
     id ("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
-
+    id("com.google.devtools.ksp")
     kotlin("kapt")
 }
 
@@ -63,6 +63,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
     implementation("com.google.android.gms:play-services-location:21.0.1")
+    implementation("com.android.support:support-annotations:28.0.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -73,7 +74,19 @@ dependencies {
     implementation("com.google.accompanist:accompanist-permissions:0.24.13-rc")
     implementation ("androidx.multidex:multidex:2.0.1")
     implementation("androidx.test:monitor:1.6.1")
-    //compose
+    //Room
+    val room_version = "2.5.2"
+
+    implementation("androidx.room:room-runtime:$room_version")
+    annotationProcessor("androidx.room:room-compiler:$room_version")
+
+    // To use Kotlin annotation processing tool (kapt)
+    ksp("androidx.room:room-compiler:$room_version")
+    // To use Kotlin Symbol Processing (KSP)
+    //ksp("androidx.room:room-compiler:$room_version")
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation("androidx.room:room-ktx:$room_version")
     implementation("androidx.activity:activity-compose:1.7.2")
     //google maps
     implementation("com.google.android.gms:play-services-maps:18.1.0")
