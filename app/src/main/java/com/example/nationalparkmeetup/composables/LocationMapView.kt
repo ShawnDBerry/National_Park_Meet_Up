@@ -29,7 +29,7 @@ import java.time.ZoneOffset
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun LocationMapView(viewModel: LocationViewModel) {
-    val markerPoint by remember { mutableStateOf(LatLng(1.35, 103.87)) }
+    val markerPoint by remember { mutableStateOf(LatLng( 40.785091, -73.968285)) }
     var newMarkerPoint by remember {
         mutableStateOf(LatLng(0.00, 0.00))
     }
@@ -46,8 +46,8 @@ fun LocationMapView(viewModel: LocationViewModel) {
     {
         Marker(
             state = MarkerState(position = markerPoint),
-            title = "Singapore",
-            snippet = "Marker in Singapore",
+            title = "Central Park",
+            snippet = "Marker in Central Park, NY",
             draggable = true,
             icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN),
             flat = true
