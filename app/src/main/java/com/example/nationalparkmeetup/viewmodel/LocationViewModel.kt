@@ -1,7 +1,7 @@
 package com.example.nationalparkmeetup.viewmodel
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import androidx.room.Room
 import com.example.nationalparkmeetup.dao.LocationDao
 import com.example.nationalparkmeetup.database.LocationDatabase
@@ -10,9 +10,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class LocationViewModel @Inject constructor(application: Application) : AndroidViewModel(application) {
+class LocationViewModel @Inject constructor(application: Application): ViewModel() {
     private val locationDao: LocationDao
-
     init {
         val db = Room.databaseBuilder(
             application,
