@@ -54,7 +54,7 @@ fun LocationMapView(viewModel: LocationViewModel) {
         ) {
             newMarkerPoint = it.position
             scope.launch(Dispatchers.IO) {
-                for (i in (expireDate - currentTime) downTo 1) {
+                for (i in (expireDate - currentTime) downTo 0) {
                     delay(1_000) // Delay for 1 second
                 }
                 withContext(Dispatchers.Main) {
