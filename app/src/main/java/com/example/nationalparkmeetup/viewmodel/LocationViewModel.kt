@@ -2,22 +2,30 @@ package com.example.nationalparkmeetup.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import com.example.nationalparkmeetup.modal.LocationDao
-import com.example.nationalparkmeetup.modal.LocationDatabase
+import androidx.room.Room
+import com.example.nationalparkmeetup.dao.LocationDao
+import com.example.nationalparkmeetup.database.LocationDatabase
+import com.example.nationalparkmeetup.model.LocationEntity
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class LocationViewModel(application: Application) : AndroidViewModel(application) {
+@HiltViewModel
+class LocationViewModel @Inject constructor(application: Application) : AndroidViewModel(application) {
     private val locationDao: LocationDao
 
     init {
-        val database = LocationDatabase.getDatabase(application)
-        locationDao = database.locationDao()
+        val db = Room.databaseBuilder(
+            application,
+            LocationDatabase::class.java, "locations"
+        ).build()
+        locationDao = db.locationDao()
     }
 
-    suspend fun insertLocation(latitude: Double, longitude: Double) {
-        locationDao.insertLocation(LocationEntity(latitude = latitude, longitude = longitude))
+  suspend  fun insertLocation(latitude: Double, longitude: Double) {
+        locationDao.insertLocation(LocationEntity(id = 0, latitude = latitude, longitude = longitude))
     }
 
-    suspend fun getAllLocations(): List<LocationEntity> {
+   suspend fun getAllLocations(): List<LocationEntity> {
         return locationDao.getAllLocations()
     }
 }
