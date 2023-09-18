@@ -21,11 +21,11 @@ class LocationViewModel @Inject constructor(application: Application) : AndroidV
         locationDao = db.locationDao()
     }
 
-  suspend  fun insertLocation(latitude: Double, longitude: Double) {
+  fun insertLocation(latitude: Double, longitude: Double) {
         locationDao.insertLocation(LocationEntity(id = 0, latitude = latitude, longitude = longitude))
     }
 
-   suspend fun getAllLocations(): List<LocationEntity> {
+   fun getAllLocations(): List<LocationEntity> {
         return locationDao.getAllLocations()
     }
 }

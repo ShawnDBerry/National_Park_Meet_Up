@@ -1,5 +1,6 @@
 package com.example.nationalparkmeetup.composables
 
+import android.util.Log
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -35,7 +36,9 @@ fun LocationMapView() {
             draggable = true,
             flat = true
         ){
-            markerPoint = it.position// Creates a CoroutineScope bound to the MoviesScreen's lifecycle
+
+            markerPoint = it.position
+            Log.d("Q", "New coordinates: $markerPoint")
         }
     }
     }

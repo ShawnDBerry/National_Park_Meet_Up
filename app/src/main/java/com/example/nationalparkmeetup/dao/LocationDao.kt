@@ -8,8 +8,8 @@ import com.example.nationalparkmeetup.model.LocationEntity
 @Dao
 interface LocationDao {
     @Insert
-  suspend  fun insertLocation(location: LocationEntity)
+    fun insertLocation(location: LocationEntity)
 
     @Query("SELECT * FROM locations")
-   suspend fun getAllLocations(): List<LocationEntity>
+    fun getAllLocations(): List<LocationEntity>
 }
