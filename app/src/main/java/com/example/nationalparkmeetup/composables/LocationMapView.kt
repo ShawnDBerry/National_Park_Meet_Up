@@ -34,11 +34,11 @@ fun LocationMapView(viewModel: LocationViewModel) {
         mutableStateOf(LatLng(0.00, 0.00))
     }
     val scope = rememberCoroutineScope()
-    val expireDate = LocalDateTime.now().plusMinutes(60).toEpochSecond(ZoneOffset.UTC)
-    val currentTime = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC)
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(markerPoint, 10f)
     }
+    val expireDate = LocalDateTime.now().plusMinutes(60).toEpochSecond(ZoneOffset.UTC)
+    val currentTime = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC)
     GoogleMap(
         modifier = Modifier.fillMaxSize(),
         cameraPositionState = cameraPositionState
@@ -52,7 +52,6 @@ fun LocationMapView(viewModel: LocationViewModel) {
             icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN),
             flat = true
         ) {
-            newMarkerPoint = it.position
             scope.launch(Dispatchers.IO) {
                 for (i in (expireDate - currentTime) downTo 0) {
                     delay(1_000) // Delay for 1 second
@@ -64,6 +63,7 @@ fun LocationMapView(viewModel: LocationViewModel) {
                     }
                 }
             }
+            newMarkerPoint = it.position
 
             viewModel.insertLocation(markerPoint.latitude, markerPoint.latitude)
             Log.d("Q", "New coordinates: $markerPoint")
